@@ -59,6 +59,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
+Plug 'wesleyche/SrcExpl'
 
 call plug#end()
 
@@ -67,6 +68,7 @@ call plug#end()
 
 "============== Mapping Function key ==========
 
+map <F3> :SrcExplToggle<CR>
 map <F5> :NERDTreeToggle<CR>
 
 "=============================================
@@ -100,5 +102,33 @@ let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wextra -Wpedantic"
 
 "Delta mate
 let delimitMate_expand_cr=1
+
+"SrcExpl
+let g:SrcExpl_winHeight=8
+let g:SrcExpl_isUpdateTags=0
+let g:SrcExpl_refreshTime=100
+let g:SrcExpl_pluginList=[
+			\ "NERD_tree_1",
+			\ "Source_Explorer"
+			\]
+
+"=============================================
+
+"============== gui config (windows) ==========
+
+if has("gui_running")
+	colorscheme torte
+	set guioptions=Mt
+
+	if has("gui_gtk2")
+		set guifont=Iconsolata\ 12
+	elseif has("gui_win32")
+		set guifont=consolas:h10:cANSI
+	endif
+endif
+
+if has("win32")
+	au GUIEnter * simalt ~x
+endif
 
 "=============================================
