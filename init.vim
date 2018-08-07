@@ -60,6 +60,7 @@ Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'wesleyche/SrcExpl'
+Plug 'jacoborus/tender.vim'
 
 call plug#end()
 
@@ -70,6 +71,11 @@ call plug#end()
 
 map <F3> :SrcExplToggle<CR>
 map <F5> :NERDTreeToggle<CR>
+
+map <C-s>m :SyntasticToggleMode<CR>
+map <C-s>e :SyntasticCheck<CR>
+map <C-s>t :call SyntasisToggleFunc()<CR>
+map <A-f> :NERDTreeFind<CR>
 
 "=============================================
 
@@ -92,7 +98,7 @@ set statusline+=%*
  
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 0
  
@@ -112,12 +118,20 @@ let g:SrcExpl_pluginList=[
 			\ "Source_Explorer"
 			\]
 
+function SyntasisToggleFunc()
+	if g:syntastic_check_on_open == 1
+		let g:syntastic_check_on_open = 0
+	else
+		let g:syntastic_check_on_open = 1
+	endif
+endfunction
+
 "=============================================
 
 "============== gui config (windows) ==========
 
 if has("gui_running")
-	colorscheme torte
+	colorscheme tender
 	set guioptions=Mt
 
 	if has("gui_gtk2")
