@@ -33,6 +33,7 @@ set cindent
 
 set noswapfile
 set nobackup
+set noundofile
 set nowb 
 
 "=============================================
@@ -84,8 +85,15 @@ map <C-s>e :SyntasticCheck<CR>
 map <C-s>t :call SyntasisToggleFunc()<CR>
 map <A-f> :NERDTreeFind<CR>
 
+nnoremap gb :bp<CR>
+nnoremap gn :bn<CR>
+
 "=============================================
 
+"============== vim-airline ==========
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+"=============================================
 
 "============== ale ==========
 let g:diminactive_enable_focus = 1
