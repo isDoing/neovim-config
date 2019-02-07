@@ -8,6 +8,7 @@ set nocompatible
 set number
 set tabstop=4 "set tab 4 space
 set shiftwidth=4 "indent size 4 set ruler "current cursor position
+set expandtab "tab to space
 set hls "search keyword highliting set history=50
 set mps+=<:> "add bracket type find bracket
 set foldmethod=marker "using folder function
@@ -64,6 +65,7 @@ Plug 'elzr/vim-json'
 Plug 'Shougo/neocomplcache.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
