@@ -79,6 +79,7 @@ call plug#end()
 
 "============== Mapping Function key ==========
 
+let mapleader=","
 map <F3> :SrcExplToggle<CR>
 map <F5> :NERDTreeToggle<CR>
 
@@ -90,6 +91,8 @@ map <A-f> :NERDTreeFind<CR>
 nnoremap gb :bp<CR>
 nnoremap gn :bn<CR>
 nnoremap gc :bd<CR>
+
+tnoremap <esc> <C-\><C-n>
 
 "=============================================
 
@@ -144,6 +147,17 @@ function SyntasisToggleFunc()
 		let g:syntastic_check_on_open = 1
 	endif
 endfunction
+
+"=============================================
+
+"============== terminal options =============
+
+if has('nvim')
+    nnoremap <A-t> :bel sp 50 <bar> resize 13 <bar> terminal <CR> a
+elseif has('gui_running')
+    set termwinsize=20x0
+    nnoremap <A-t> :belowright terminal <CR>
+endif
 
 "=============================================
 
