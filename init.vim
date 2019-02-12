@@ -89,6 +89,7 @@ map <A-f> :NERDTreeFind<CR>
 
 nnoremap gb :bp<CR>
 nnoremap gn :bn<CR>
+nnoremap gc :bd<CR>
 
 "=============================================
 
@@ -107,6 +108,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
 
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] "ignore in .gitignore
 
 "Syntastic
 set statusline+=%#warningmsg#
