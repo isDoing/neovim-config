@@ -153,10 +153,10 @@ endfunction
 "============== terminal options =============
 
 if has('nvim')
-    nnoremap <A-t> :bel sp <bar> resize 13 <bar> terminal <CR> a
+    nnoremap <C-]> :bel sp <bar> resize 13 <bar> terminal <CR> a
 elseif has('gui_running')
     set termwinsize=20x0
-    nnoremap <A-t> :belowright terminal <CR>
+    nnoremap <C-]> :belowright terminal <CR>
 endif
 
 "=============================================
