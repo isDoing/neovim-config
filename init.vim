@@ -7,6 +7,7 @@ filetype plugin on
 set nocompatible
 set number
 set tabstop=4 "set tab 4 space
+set shiftround "line up indent
 set shiftwidth=4 "indent size 4 set ruler "current cursor position
 set expandtab "tab to space
 set hls "search keyword highliting set history=50
