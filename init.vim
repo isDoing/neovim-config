@@ -16,7 +16,6 @@ set foldmethod=marker "using folder function
 
 set showmatch "highlight matched bracket
 
-
 syntax on
 
 "=============================================
@@ -47,6 +46,14 @@ set completeopt-=preview
 
 "=============================================
 
+"========== filetype autocmd options =========
+
+autocmd BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn setlocal nofoldenable
+
+"=============================================
+
+
+
 
 "============== Plugin install ===============
 
@@ -72,6 +79,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'wesleyche/SrcExpl'
 Plug 'jacoborus/tender.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'skanehira/preview-markdown.vim'
 
 call plug#end()
 
@@ -151,6 +160,12 @@ endfunction
 
 "=============================================
 
+"============== preview markdown option ======
+
+let g:preview_markdown_vertical=1 "Open window vertical when value is 1
+
+"=============================================
+
 "============== terminal options =============
 
 if has('nvim')
@@ -172,8 +187,9 @@ endif
 
 "============== gui config (windows) ==========
 
+colorscheme jellybeans
 if has("gui_running")
-	colorscheme tender
+	colorscheme jellybeans
 	set guioptions=Mt
 
 	if has("gui_gtk2")
