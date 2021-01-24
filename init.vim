@@ -70,7 +70,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tommcdo/vim-lion'
 "Plug 'blueyed/vim-diminactive'
 Plug 'elzr/vim-json'
-Plug 'Shougo/neocomplcache.vim'
+"Plug 'Shougo/neocomplcache.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -81,6 +81,10 @@ Plug 'wesleyche/SrcExpl'
 Plug 'jacoborus/tender.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'skanehira/preview-markdown.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 call plug#end()
 
@@ -158,6 +162,43 @@ function SyntasisToggleFunc()
 	endif
 endfunction
 
+"=============================================
+
+"============== language server (lsp) ======
+let g:lsp_diagnostics_enabled = 0
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> ld <plug>(lsp-definition)
+    nmap <buffer> ls <plug>(lsp-document-symbol-search)
+    nmap <buffer> lS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> lr <plug>(lsp-references)
+    nmap <buffer> li <plug>(lsp-implementation)
+    nmap <buffer> lt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [l <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]l <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+"=============================================
+
+"============== asyncomplete ======
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 "=============================================
 
 "============== preview markdown option ======
