@@ -171,15 +171,15 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> ld <plug>(lsp-definition)
-    nmap <buffer> ls <plug>(lsp-document-symbol-search)
-    nmap <buffer> lS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> lr <plug>(lsp-references)
-    nmap <buffer> li <plug>(lsp-implementation)
-    nmap <buffer> lt <plug>(lsp-type-definition)
+    nmap <buffer> \d <plug>(lsp-definition)
+    nmap <buffer> \s <plug>(lsp-document-symbol-search)
+    nmap <buffer> \S <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> \r <plug>(lsp-references)
+    nmap <buffer> \i <plug>(lsp-implementation)
+    nmap <buffer> \t <plug>(lsp-type-definition)
     nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [l <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]l <Plug>(lsp-next-diagnostic)
+    nmap <buffer> [\ <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]\ <Plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
 
     let g:lsp_format_sync_timeout = 1000
