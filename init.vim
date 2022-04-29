@@ -63,7 +63,6 @@ Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'vim-scripts/vcscommand.vim'
-Plug 'mileszs/ack.vim'
 Plug 'qpkorr/vim-renamer'
 Plug 'chrisbra/csv.vim'
 Plug 'plasticboy/vim-markdown'
@@ -75,7 +74,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'Raimondi/delimitMate'
 Plug 'wesleyche/SrcExpl'
 Plug 'jacoborus/tender.vim'
@@ -96,11 +96,11 @@ call plug#end()
 let mapleader=","
 map <F3> :SrcExplToggle<CR>
 map <F5> :NERDTreeToggle<CR>
+map <F6> :NERDTreeFind<CR>
 
 map <C-s>m :SyntasticToggleMode<CR>
 map <C-s>e :SyntasticCheck<CR>
 map <C-s>t :call SyntasisToggleFunc()<CR>
-map <A-f> :NERDTreeFind<CR>
 
 nnoremap gb :bp<CR>
 nnoremap gn :bn<CR>
@@ -164,7 +164,18 @@ endfunction
 
 "=============================================
 
-"============== language server (lsp) ======
+"============== fzf configuration ============
+nnoremap <C-p> :Files<CR>
+nnoremap <C-g> :Rg<CR>
+
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xofset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
+
+"=============================================
+
+"============== language server (lsp) =======
 let g:lsp_diagnostics_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
