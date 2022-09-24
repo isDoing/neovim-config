@@ -76,7 +76,6 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'Raimondi/delimitMate'
 Plug 'wesleyche/SrcExpl'
 Plug 'jacoborus/tender.vim'
 Plug 'nanotech/jellybeans.vim'
@@ -142,9 +141,6 @@ let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
 let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wextra -Wpedantic"
 
-"Delta mate
-let delimitMate_expand_cr=1
-
 "SrcExpl
 let g:SrcExpl_winHeight=8
 let g:SrcExpl_isUpdateTags=0
@@ -176,6 +172,7 @@ let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
 "=============================================
 
 "============== language server (lsp) =======
+
 let g:lsp_diagnostics_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
@@ -204,6 +201,7 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
 "=============================================
 
 "============== asyncomplete ======
